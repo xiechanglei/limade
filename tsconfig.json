@@ -1,0 +1,24 @@
+{
+  "include": ["src", "dist"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib":["ESNext","dom"],//使用库
+    "allowJs": false,//编译js
+    "strict": true,//严格模式
+    "experimentalDecorators":true,
+    "useDefineForClassFields": false,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "declaration": true,//声明文件/
+    "outDir": "dist",
+    "baseUrl": "./",
+  }
+}

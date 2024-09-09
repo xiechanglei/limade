@@ -1,0 +1,32 @@
+{
+  "name": "limade",
+  "version": "0.0.3",
+  "description": "a simple and lightweight lib for normal utils",
+  "type": "module",
+  "main": "./dist/index.esm.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.esm.d.ts",
+  "exports": {
+    "types": [
+      "./dist/index.esm.d.ts"
+    ],
+    "import": "./dist/index.esm.js"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "rollup -c"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.18.0",
+    "rollup-plugin-ts": "^3.4.5",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.12"
+  }
+}
