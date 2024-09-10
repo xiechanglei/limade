@@ -1,4 +1,4 @@
-import {HandlerBase} from "./base.handler";
+import {HandlerBase} from "./handler.base";
 
 /**
  * 事件处理器

@@ -12,6 +12,15 @@ export default {
         {
             format: "esm",//esm format
             file: "dist/index.esm.js",//output file
+        },
+        {
+            format: "cjs",//cjs format
+            file: "dist/index.cjs.js",//output file
+        },
+        {
+            format: "umd",//umd format
+            name: "limade",//umd name
+            file: "dist/index.umd.js",//output file
         }
     ],
 }

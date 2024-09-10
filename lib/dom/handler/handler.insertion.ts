@@ -1,4 +1,5 @@
-import {HandlerBase} from "./base.handler";
+import {HandlerBase} from "./handler.base";
+import {optional} from "../../oo";
 
 /**
  * 子元素类型
@@ -24,13 +25,13 @@ const formatChild = (child: childType): HTMLElement | Text => {
 export class HandlerForInsert extends HandlerBase {
 
     // 在元素内部最后面添加内容
-    appendTo(parent: HTMLElement): this {
+    appendTo(parent: HTMLElement | ShadowRoot): this {
         parent.appendChild(this.el)
         return this
     }
 
     // 在元素内部最前面添加内容
-    prependTo(parent: HTMLElement): this {
+    prependTo(parent: HTMLElement | ShadowRoot): this {
         parent.prepend(this.el)
         return this
     }
@@ -52,7 +53,7 @@ export class HandlerForInsert extends HandlerBase {
      * @param child
      */
     appendChild(child: childType): this {
-        this.el.appendChild(formatChild(child))
+        optional(child).map(formatChild).ifPresent((child) => this.el.appendChild(child))
         return this
     }
 
@@ -61,7 +62,7 @@ export class HandlerForInsert extends HandlerBase {
      * @param child
      */
     prependChild(child: childType): this {
-        this.el.prepend(formatChild(child))
+        optional(child).map(formatChild).ifPresent((child) => this.el.prepend(child))
         return this
     }
 
@@ -70,7 +71,14 @@ export class HandlerForInsert extends HandlerBase {
      * @param child
      */
     fill(child: childType): this {
-        this.el.replaceChildren(formatChild(child))
+        optional(child).map(formatChild).ifPresent((child) => {
+            this.empty().appendChild(child)
+        });
+        return this;
+    }
+
+    text(text: string): this {
+        this.el.textContent = text
         return this
     }
 
@@ -79,7 +87,7 @@ export class HandlerForInsert extends HandlerBase {
      * @param html
      */
     fillHTML(html: string): this {
-        this.el.innerHTML = html
+        optional(html).ifPresent(html => this.el.innerHTML = html)
         return this
     }
 

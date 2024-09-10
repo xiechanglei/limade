@@ -1,9 +1,9 @@
 {
   "name": "limade",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "a simple and lightweight lib for normal utils",
   "type": "module",
-  "main": "./dist/index.esm.js",
+  "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.esm.d.ts",
   "exports": {
