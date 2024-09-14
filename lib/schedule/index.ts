@@ -1,35 +1,28 @@
-import {optional} from "../oo";
-
-interface IdleTask {
-    // 任务是否已经结束
-    ended(): boolean;
-
-    // 继续执行任务
-    goon: () => void;
-}
+export * from "./idleTask"
 
 /**
- * 调度一个任务，在浏览器的空闲时间进行执行。此任务应该是一个耗js执行时间较长的任务，并且不应该去阻塞主线程。
+ * Sleep for a given amount of time
+ * @param ms - The amount of time to sleep in milliseconds
  */
-export function scheduleIdleTask(task: IdleTask): void {
-    optional(task).orElseThrow('task不能为空');
+export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-    optional(window.requestIdleCallback).ifPresent((requestIdleCallback) => {
-        const execute = () => {
-            requestIdleCallback((idle) => {
-                while (idle.timeRemaining() > 0 && !task.ended()) {
-                    task.goon();
-                }
-                if (!task.ended()) {
-                    execute();
-                }
-            });
-        };
-        execute();
-    }).ifNotPresent(() => {
-        //不支持requestIdleCallback的浏览器，直接执行
-        while (!task.ended()) {
-            task.goon();
+type QueueTask = Function | number;
+
+export const scheduleQueueTask = async (...task: QueueTask[]) => {
+    for (let i = 0; i < task.length; i++) {
+        if (typeof task[i] === 'number') {
+            await sleep(task[i] as number);
+        } else if (typeof task[i] === 'function') {
+            await (task[i] as Function)();
         }
-    });
+    }
 }
+
+const log1 = () => {
+    console.log(1)
+}
+
+const log2 = () => {
+    console.log(2)
+}
+scheduleQueueTask(log1, 2000, log2, 3000, log1);

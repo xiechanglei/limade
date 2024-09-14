@@ -1,4 +1,4 @@
-import {Type, UnionToConstructorIntersection} from "./index";
+import {Type, UnionToConstructorIntersection} from "./type";
 
 
 /**

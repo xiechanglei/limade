@@ -6,3 +6,4 @@ export type UnionToConstructorIntersection<U> = (U extends any ? (k: U) => void 
 
 // 将类型种的undefined和null去掉
 export type NonNullable<T> = T extends null | undefined ? never : T;
+

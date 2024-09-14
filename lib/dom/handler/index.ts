@@ -14,7 +14,7 @@ const HTMLElementHandler = mixinClassMethods(HandlerBase, HandlerForClass, Handl
  * @param props - 一个对象，包含了元素的属性
  *
  */
-export function handlerDom(source: string | HTMLElement | Type<HTMLElement>, props?: unknown) {
+export function withHandler(source: string | HTMLElement | Type<HTMLElement>, props?: unknown) {
     const buildSource = optional(source).map((source) => {
         if (typeof source === 'string') {
             source = document.createElement(source);

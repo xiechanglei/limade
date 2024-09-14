@@ -49,12 +49,4 @@ export class HandlerForAttr extends HandlerBase {
         return this.el.id
     }
 
-    // /**
-    //  * just for web component
-    //  * @param props
-    //  */
-    // props(props: unknown): this {
-    //     (this.el as any as WebComponent<unknown>).props = props
-    //     return this;
-    // }
 }
